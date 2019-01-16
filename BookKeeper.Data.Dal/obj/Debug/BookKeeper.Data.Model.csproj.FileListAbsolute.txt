@@ -1,0 +1,5 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\BookKeeper\BookKeeper.Data.Model\bin\Debug\BookKeeper.Data.Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\BookKeeper\BookKeeper.Data.Model\bin\Debug\BookKeeper.Data.Model.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\BookKeeper\BookKeeper.Data.Model\obj\Debug\BookKeeper.Data.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\BookKeeper\BookKeeper.Data.Model\obj\Debug\BookKeeper.Data.Model.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\BookKeeper\BookKeeper.Data.Model\obj\Debug\BookKeeper.Data.Model.pdb

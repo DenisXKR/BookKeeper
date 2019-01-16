@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Book-keeping";
+}
+
+<style type="text/css">
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { display: none !important; }
+</style>
+
+<h2>@ViewBag.Title</h2>
+
+<div ng-controller="bookKeeperCtrl" ng-cloak>
+
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" ng-click="getAllExpenes()" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">List</a></li>
+            <li role="presentation" ng-click="getAllExpeneByCategory()"><a href="#category" aria-controls="category" role="tab" data-toggle="tab">Category</a></li>
+            <li role="presentation" ng-click="getAllExpeneByMonth()"><a href="#month" aria-controls="month" role="tab" data-toggle="tab">Month</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="list">
+                <table class="table table-hover">
+                    <tr>
+                        <td><b>ID</b></td>
+                        <td><b>Category</b></td>
+                        <td><b>Date</b></td>
+                        <td><b>Amount</b></td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="ex in expenes">
+                        <td>
+                            {{ex.Id}}
+                        </td>
+                        <td>
+                            {{ex.CategoryName}}
+                        </td>
+                        <td>
+                            {{ formatDate(ex.Date) | date:'yyyy-MM-dd'}}
+                        </td>
+                        <td>
+                            {{ex.Amount | currencyR }}
+                        </td>
+                        <td>
+                            <span ng-click="editExpense(ex)" class="btn btn-primary">Edit</span>
+                            <span ng-click="deleteExpenes(ex)" class="btn btn-danger">Delete</span>
+                        </td>
+                    </tr>
+                </table>
+                <span ng-click="addExpense()" class="btn btn-default">
+                    Add
+                </span>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="category">
+                <table class="table table-hover">
+                    <tr>
+                        <td><b>Category</b></td>
+                        <td><b>Summ</b></td>
+                    </tr>
+                    <tr ng-repeat="ex in expenesCategory">
+                        <td>
+                            {{ex.CategoryName}}
+                        </td>
+                        <td>
+                            {{ex.Sum}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="month">
+                <table class="table table-hover">
+                    <tr>
+                        <td><b>Year</b></td>
+                        <td><b>Month</b></td>
+                        <td><b>Sum</b></td>
+                    </tr>
+                    <tr ng-repeat="ex in expenesMonth">
+                        <td>
+                            {{ex.Year}}
+                        </td>
+                        <td>
+                            {{ex.Month}}
+                        </td>
+                        <td>
+                            {{ex.Sum}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    <div class="modal fade" id="editDialog" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{Action}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Category</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" ng-model="selectedCategoryId" ng-options="category.Id as category.Name for category in categories"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Date</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="date" ng-model="date" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Amount</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="amount" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" value="Save" ng-click="addUpdateExpense()" />
+                    <input type="button" class="btn btn-danger" value="Cancel" ng-click="cancel()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
